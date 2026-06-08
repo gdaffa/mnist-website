@@ -1,0 +1,7 @@
+@import 'tailwindcss';
+@import '@fontsource/open-sauce-one/400.css';
+
+@theme {
+   --font-open-sauce: "Open Sauce One", var(--font-sans);
+   --default-font-family: var(--font-open-sauce);
+}
