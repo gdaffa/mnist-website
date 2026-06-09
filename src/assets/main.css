@@ -1,7 +1,24 @@
 @import 'tailwindcss';
 @import '@fontsource/open-sauce-one/400.css';
+@import '@fontsource/open-sauce-one/500.css';
 
 @theme {
    --font-open-sauce: "Open Sauce One", var(--font-sans);
    --default-font-family: var(--font-open-sauce);
+}
+
+@layer components {
+   .btn {
+      @apply rounded-full w-full p-1 border cursor-pointer transition-all
+         text-center active:scale-[102%] hover:scale-[102%];
+   }
+}
+
+.SourceOption {
+   @apply w-full h-[50%] p-4 grid place-items-center font-medium;
+}
+
+.SourceOption-Card {
+   @apply w-full rounded-xl p-4 flex items-center justify-center flex-col gap-2
+      bg-stone-100 border border-stone-300;
 }
