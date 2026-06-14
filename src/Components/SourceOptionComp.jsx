@@ -6,7 +6,7 @@ export default function SourceOption({ setSource }) {
             id="uploaded-image"
             className="hidden"
             accept="image/jpeg,image/jpg,image/png"
-            onInput={e => setSource(!!e.target.files[0])} />
+            onInput={e => setSource(e.target.files[0])} />
          <div className="text-sm text-stone-500 mb-2">
             Pilih yang ingin diprediksi
          </div>
