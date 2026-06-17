@@ -22,7 +22,9 @@ export default function App() {
 
    return (
       <main className="min-h-dvh w-full bg-stone-200 p-4 flex flex-col gap-4">
-         <SourceOptionComp setSource={setSource} />
+         <SourceOptionComp
+            setSource={setSource}
+         />
          <PredictionResultComp
             prediction={prediction}
             className={childrenOpacity}

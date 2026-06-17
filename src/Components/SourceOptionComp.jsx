@@ -1,4 +1,20 @@
+import { useState } from 'react';
+
 export default function SourceOption({ setSource }) {
+   const [imgSrc, setImgSrc] = useState(null);
+
+   /**
+    * Change the source to inputed image.
+    *
+    * @param {InputEvent} event
+    */
+   function updateSource(event) {
+      const file = event.target.files[0];
+      URL.revokeObjectURL(imgSrc);
+      setImgSrc(file ? URL.createObjectURL(file) : null);
+      setSource(file);
+   }
+
    return (
       <section className="Card SourceOption">
          <input
@@ -6,7 +22,8 @@ export default function SourceOption({ setSource }) {
             id="uploaded-image"
             className="hidden"
             accept="image/jpeg,image/jpg,image/png"
-            onInput={e => setSource(e.target.files[0])} />
+            onInput={updateSource}
+         />
          <div className="text-sm text-stone-500">
             Pilih yang ingin diprediksi
          </div>
@@ -16,6 +33,17 @@ export default function SourceOption({ setSource }) {
          <label className="Btn Btn_secondary -mt-2">
             Gambar Sendiri
          </label>
+         <div className='SourceOption-ImagePreview'>
+            {imgSrc ? (
+               <img
+                  src={imgSrc}
+                  alt='Preview gambar yang dipilih'
+                  className='object-contain w-full aspect-square'
+               />
+            ) : (
+               <div>Preview gambar</div>
+            )}
+         </div>
       </section>
    );
 }
