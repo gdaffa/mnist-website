@@ -7,18 +7,13 @@ export default function SourceOption({ setSource }) {
             className="hidden"
             accept="image/jpeg,image/jpg,image/png"
             onInput={e => setSource(e.target.files[0])} />
-         <div className="text-sm text-stone-500 mb-2">
+         <div className="text-sm text-stone-500">
             Pilih yang ingin diprediksi
          </div>
-         <label
-            className="btn bg-stone-800 border-stone-800 text-stone-100"
-            htmlFor="uploaded-image"
-         >
+         <label className="Btn Btn_primary" htmlFor="uploaded-image">
             Upload Gambar
          </label>
-         <label
-            className="btn bg-transparent text-stone-700 border-stone-500"
-         >
+         <label className="Btn Btn_secondary -mt-2">
             Gambar Sendiri
          </label>
       </section>

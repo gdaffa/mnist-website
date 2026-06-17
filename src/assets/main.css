@@ -9,9 +9,17 @@
 }
 
 @layer components {
-   .btn {
+   .Btn {
       @apply rounded-full w-full p-1 border cursor-pointer transition-all
-         text-center active:scale-[102%] hover:scale-[102%];
+         text-center font-medium active:scale-[102%] hover:scale-[102%];
+   }
+
+   .Btn_primary {
+      @apply bg-stone-800 border-stone-800 text-stone-100;
+   }
+
+   .Btn_secondary {
+      @apply bg-transparent border-stone-500 text-stone-700 border;
    }
 
    .Card {
@@ -28,5 +36,5 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .SourceOption {
-   @apply flex items-center justify-center flex-col gap-2 font-medium;
+   @apply flex items-center justify-center flex-col gap-4;
 }
