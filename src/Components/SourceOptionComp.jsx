@@ -1,6 +1,9 @@
 import { useRef, useEffect } from 'react';
 import { predict } from '../model';
 
+/**
+ * @param {{ source: File?; }} param0
+ */
 export default function SourceOption({ source, setSource, setPrediction }) {
    const img = useRef(null);
 

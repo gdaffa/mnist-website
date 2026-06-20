@@ -1,3 +1,11 @@
+/**
+ * @param {{
+ *    prediction: {
+ *       raw    : [number, number][];
+ *       sorted : [number, number][];
+ *    };
+ * }} param0
+ */
 export default function PredictionResultComp({ prediction, className }) {
    const [predicted, confidence] = prediction.sorted.at(-1);
 

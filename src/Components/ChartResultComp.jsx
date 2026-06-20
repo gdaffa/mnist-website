@@ -32,8 +32,8 @@ const chartOption  = {
  *    prediction: {
  *       raw    : [number, number][];
  *       sorted : [number, number][];
- *    }
- * }} param0 
+ *    };
+ * }} param0
  */
 function BarChart({ prediction }) {
    const predictionLabel  = prediction.raw.map(pred => pred[0]);
@@ -55,8 +55,8 @@ function BarChart({ prediction }) {
  *    prediction: {
  *       raw    : [number, number][];
  *       sorted : [number, number][];
- *    }
- * }} param0 
+ *    };
+ * }} param0
  */
 export default function ChartResultComp({ className, prediction }) {
    return (
