@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { predict, extractLabel } from './model';
+import { useState } from "react";
+import { extractLabel } from './model';
 
 import SourceOptionComp from "./Components/SourceOptionComp";
 import PredictionResultComp from "./Components/PredictionResultComp";
@@ -12,18 +12,14 @@ export default function App() {
       sorted : Array(10).fill(1).map(extractLabel)
    });
 
-   useEffect(() => {
-      if (source != null) {
-         setPrediction(predict());
-      }
-   }, [source]);
-
    const childrenOpacity = source != null ? '' : 'opacity-45';
 
    return (
       <main className="min-h-dvh w-full bg-stone-200 p-4 flex flex-col gap-4">
          <SourceOptionComp
+            source={source}
             setSource={setSource}
+            setPrediction={setPrediction}
          />
          <PredictionResultComp
             prediction={prediction}

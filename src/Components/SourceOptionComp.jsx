@@ -1,18 +1,31 @@
-import { useState } from 'react';
+import { useRef, useEffect } from 'react';
+import { predict } from '../model';
 
-export default function SourceOption({ setSource }) {
-   const [imgSrc, setImgSrc] = useState(null);
+export default function SourceOption({ source, setSource, setPrediction }) {
+   const img = useRef(null);
+
+   useEffect(() => {
+      img.current.onload = async () => {
+         if (!img.current.src) {
+            return;
+         }
+
+         const prediction = await predict(img.current);
+         setPrediction(prediction);
+      }
+   }, [setPrediction]);
 
    /**
     * Change the source to inputed image.
     *
     * @param {InputEvent} event
     */
-   function updateSource(event) {
+   async function updateSource(event) {
       const file = event.target.files[0];
-      URL.revokeObjectURL(imgSrc);
-      setImgSrc(file ? URL.createObjectURL(file) : null);
       setSource(file);
+
+      URL.revokeObjectURL(img.current.src);
+      img.current.src = file ? URL.createObjectURL(file) : null;
    }
 
    return (
@@ -35,11 +48,11 @@ export default function SourceOption({ setSource }) {
          </label>
          <div className='SourceOption-PreviewSection'>
             <img
-               src={imgSrc}
+               ref={img}
                alt='Preview gambar yang dipilih'
-               className={imgSrc ? 'SourceOption-ImagePreview' : 'hidden'}
+               className={source ? 'SourceOption-ImagePreview' : 'hidden'}
             />
-            <div className={imgSrc && 'hidden'}>Preview gambar</div>
+            <div className={source && 'hidden'}>Preview gambar</div>
          </div>
       </section>
    );

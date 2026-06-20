@@ -45,5 +45,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .SourceOption-ImagePreview {
+   image-rendering: crisp-edges;
    @apply w-full aspect-square object-contain;
 }
