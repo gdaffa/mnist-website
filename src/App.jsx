@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { extractLabel } from './model';
 
 import SourceOptionComp from "./Components/SourceOptionComp";
 import PredictionResultComp from "./Components/PredictionResultComp";
@@ -8,8 +7,8 @@ import ChartResultComp from './Components/ChartResultComp';
 export default function App() {
    const [source, setSource]         = useState(null);
    const [prediction, setPrediction] = useState({
-      raw    : Array(10).fill(1).map(extractLabel),
-      sorted : Array(10).fill(1).map(extractLabel)
+      raw    : [...Array(10).fill(1).entries()],
+      sorted : [...Array(10).fill(1).entries()]
    });
 
    const childrenOpacity = source != null ? '' : 'opacity-45';

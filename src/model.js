@@ -5,15 +5,6 @@ const MODEL_PATH = import.meta.env.VITE_MODEL_PATH;
 
 const model = await tf.loadGraphModel(MODEL_PATH);
 
-/**
- * 
- * @param {number} result 
- * @param {number} label 
- */
-export function extractLabel(result, label) {
-   return [label, result];
-}
-
 function element2tensor(element) {
    return tf.tidy(() => {
       const tensor  = tf.browser.fromPixels(element);
@@ -34,8 +25,10 @@ export async function predict(element) {
    tensor.dispose();
    prediction.dispose();
 
+   const probWithLabel = [...probability[0].entries()];
+
    return {
-      raw    : probability[0].map(extractLabel),
-      sorted : probability[0].map(extractLabel).sort((a, b) => a[1] - b[1])
+      raw    : probWithLabel,
+      sorted : probWithLabel.toSorted((a, b) => a[1] - b[1])
    };
 }
