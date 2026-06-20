@@ -39,7 +39,11 @@ h1, h2, h3, h4, h5, h6 {
    @apply flex items-center justify-center flex-col gap-4;
 }
 
-.SourceOption-ImagePreview {
-   @apply w-full aspect-square grid place-items-center rounded-lg border
+.SourceOption-PreviewSection {
+   @apply w-full aspect-square grid place-items-center rounded-lg border overflow-hidden
       border-stone-300 bg-stone-200/50 text-stone-400;
+}
+
+.SourceOption-ImagePreview {
+   @apply w-full aspect-square object-contain;
 }

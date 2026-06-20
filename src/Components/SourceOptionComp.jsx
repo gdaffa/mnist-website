@@ -33,16 +33,13 @@ export default function SourceOption({ setSource }) {
          <label className="Btn Btn_secondary -mt-2">
             Gambar Sendiri
          </label>
-         <div className='SourceOption-ImagePreview'>
-            {imgSrc ? (
-               <img
-                  src={imgSrc}
-                  alt='Preview gambar yang dipilih'
-                  className='object-contain w-full aspect-square'
-               />
-            ) : (
-               <div>Preview gambar</div>
-            )}
+         <div className='SourceOption-PreviewSection'>
+            <img
+               src={imgSrc}
+               alt='Preview gambar yang dipilih'
+               className={imgSrc ? 'SourceOption-ImagePreview' : 'hidden'}
+            />
+            <div className={imgSrc && 'hidden'}>Preview gambar</div>
          </div>
       </section>
    );
