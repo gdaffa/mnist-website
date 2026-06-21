@@ -30,8 +30,10 @@ function element2tensor(element) {
  */
 function preprocessTensor(tensor) {
    return tf.tidy(() => {
-      const resized = tf.image.resizeNearestNeighbor(tensor, DIMENSION);
-      return resized;
+      const resized    = tf.image.resizeNearestNeighbor(tensor, DIMENSION);
+      const grayscaled = tf.image.rgbToGrayscale(resized);
+
+      return grayscaled.concat([grayscaled, grayscaled], -1);
    })
 }
 
