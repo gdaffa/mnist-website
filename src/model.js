@@ -14,14 +14,25 @@ const model = await tf.loadGraphModel(MODEL_PATH);
  */
 function element2tensor(element) {
    return tf.tidy(() => {
-      const tensor  = tf.browser.fromPixels(element);
-      const resized = tf.image.resizeNearestNeighbor(tensor, DIMENSION);
-
-      return resized
+      const tensor = tf.browser.fromPixels(element);
+      return tensor
          .toFloat()
          .div(tf.scalar(255))
          .expandDims(0);
    });
+}
+
+/**
+ * Preprocess the tensor to match the tensor input format for model inference.
+ *
+ * @param {tf.Tensor<tf.Rank>} tensor 
+ * @returns {tf.Tensor3D | tf.Tensor4D}
+ */
+function preprocessTensor(tensor) {
+   return tf.tidy(() => {
+      const resized = tf.image.resizeNearestNeighbor(tensor, DIMENSION);
+      return resized;
+   })
 }
 
 /**
@@ -31,7 +42,7 @@ function element2tensor(element) {
  * @returns { Promise<{ raw: number[]; sorted: number[]; }> }
  */
 export async function predict(element) {
-   const tensor      = element2tensor(element);
+   const tensor      = preprocessTensor(element2tensor(element));
    const prediction  = await model.predict(tensor);
    const probability = await prediction.array();
 
